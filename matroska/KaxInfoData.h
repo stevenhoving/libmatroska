@@ -47,8 +47,6 @@
 #include "matroska/KaxDefines.h"
 #include "matroska/KaxSemantic.h"
 
-using namespace LIBEBML_NAMESPACE;
-
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_CONTEXT(KaxPrevUID);
@@ -58,7 +56,7 @@ class MATROSKA_DLL_API KaxPrevUID : public KaxSegmentUID {
     KaxPrevUID(const KaxPrevUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
     virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 
-        EBML_CONCRETE_CLASS(KaxPrevUID)
+    EBML_CONCRETE_CLASS(KaxPrevUID)
 };
 
 DECLARE_MKX_CONTEXT(KaxNextUID);
@@ -68,7 +66,7 @@ class MATROSKA_DLL_API KaxNextUID : public KaxSegmentUID {
     KaxNextUID(const KaxNextUID & ElementToClone) :KaxSegmentUID(ElementToClone){}
     virtual bool ValidateSize() const { return IsFiniteSize() && (GetSize() == 16);}
 
-        EBML_CONCRETE_CLASS(KaxNextUID)
+    EBML_CONCRETE_CLASS(KaxNextUID)
 };
 
 END_LIBMATROSKA_NAMESPACE

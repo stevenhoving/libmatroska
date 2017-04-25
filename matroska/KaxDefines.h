@@ -147,69 +147,69 @@ class MATROSKA_DLL_API x : public EbmlMaster { \
 #define DECLARE_MKX_CONTEXT(x)
 
 #define DECLARE_MKX_MASTER(x)     DECLARE_MKX_CONTEXT(x) \
-class MATROSKA_DLL_API x : public EbmlMaster { \
+class MATROSKA_DLL_API x : public libebml::EbmlMaster { \
     public: x(); \
-    x(const x & ElementToClone) :EbmlMaster(ElementToClone) {} \
+    x(const x & ElementToClone) :libebml::EbmlMaster(ElementToClone) {} \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_MASTER_CONS(x)     DECLARE_MKX_CONTEXT(x) \
-class MATROSKA_DLL_API x : public EbmlMaster { \
+class MATROSKA_DLL_API x : public libebml::EbmlMaster { \
     public: x(); \
     x(const x & ElementToClone); \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_BINARY(x)     DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlBinary { \
+  class MATROSKA_DLL_API x : public libebml::EbmlBinary { \
     public: x(); \
-    x(const x & ElementToClone) :EbmlBinary(ElementToClone) {} \
+    x(const x & ElementToClone) : libebml::EbmlBinary(ElementToClone) {} \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_BINARY_CONS(x) DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlBinary { \
+  class MATROSKA_DLL_API x : public libebml::EbmlBinary { \
     public: x(); \
     x(const x & ElementToClone); \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_UNISTRING(x)  DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlUnicodeString { \
+  class MATROSKA_DLL_API x : public libebml::EbmlUnicodeString { \
     public: x(); \
-    x(const x & ElementToClone) :EbmlUnicodeString(ElementToClone) {} \
+    x(const x & ElementToClone) :libebml::EbmlUnicodeString(ElementToClone) {} \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_STRING(x)     DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlString { \
+  class MATROSKA_DLL_API x : public libebml::EbmlString { \
     public: x(); \
-    x(const x & ElementToClone) :EbmlString(ElementToClone) {} \
+    x(const x & ElementToClone) :libebml::EbmlString(ElementToClone) {} \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_UINTEGER(x)   DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlUInteger { \
+  class MATROSKA_DLL_API x : public libebml::EbmlUInteger { \
     public: x(); \
-    x(const x & ElementToClone) :EbmlUInteger(ElementToClone) {} \
+    x(const x & ElementToClone) :libebml::EbmlUInteger(ElementToClone) {} \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_SINTEGER_CONS(x)   DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlSInteger { \
+  class MATROSKA_DLL_API x : public libebml::EbmlSInteger { \
     public: x(); \
     x(const x & ElementToClone); \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_SINTEGER(x)   DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlSInteger { \
+  class MATROSKA_DLL_API x : public libebml::EbmlSInteger { \
     public: x(); \
-    x(const x & ElementToClone) :EbmlSInteger(ElementToClone) {} \
+    x(const x & ElementToClone) :libebml::EbmlSInteger(ElementToClone) {} \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_DATE(x)       DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlDate { \
+  class MATROSKA_DLL_API x : public libebml::EbmlDate { \
     public: x(); \
-    x(const x & ElementToClone) :EbmlDate(ElementToClone) {} \
+    x(const x & ElementToClone) :libebml::EbmlDate(ElementToClone) {} \
     EBML_CONCRETE_CLASS(x)
 
 #define DECLARE_MKX_FLOAT(x)      DECLARE_MKX_CONTEXT(x) \
-  class MATROSKA_DLL_API x : public EbmlFloat { \
+  class MATROSKA_DLL_API x : public libebml::EbmlFloat { \
     public: x(); \
-    x(const x & ElementToClone) :EbmlFloat(ElementToClone) {} \
+    x(const x & ElementToClone) :libebml::EbmlFloat(ElementToClone) {} \
     EBML_CONCRETE_CLASS(x)
 
 #endif

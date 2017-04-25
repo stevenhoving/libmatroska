@@ -44,8 +44,6 @@
 #include "ebml/EbmlMaster.h"
 #include "matroska/KaxDefines.h"
 
-using namespace LIBEBML_NAMESPACE;
-
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_BINARY (KaxSeekID)
@@ -153,7 +151,7 @@ DECLARE_MKX_UINTEGER(KaxReferencePriority)
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_SINTEGER(KaxReferenceVirtual)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_BINARY (KaxCodecState)
@@ -177,22 +175,22 @@ DECLARE_MKX_UINTEGER(KaxSliceLaceNumber)
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_UINTEGER(KaxSliceFrameNumber)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceBlockAddID)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDelay)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxSliceDuration)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_MASTER(KaxReferenceFrame)
@@ -207,7 +205,7 @@ DECLARE_MKX_UINTEGER(KaxReferenceTimeCode)
 
 DECLARE_MKX_BINARY (KaxEncryptedBlock)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 #endif
@@ -255,13 +253,13 @@ DECLARE_MKX_UINTEGER(KaxTrackDefaultDecodedFieldDuration)
 
 DECLARE_MKX_FLOAT(KaxTrackTimecodeScale)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_SINTEGER(KaxTrackOffset)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 #endif
 
@@ -294,17 +292,17 @@ DECLARE_MKX_UINTEGER(KaxTrackAttachmentLink)
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_UNISTRING(KaxCodecSettings)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_STRING(KaxCodecInfoURL)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_STRING(KaxCodecDownloadURL)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxCodecDecodeAll)
@@ -354,7 +352,7 @@ DECLARE_MKX_UINTEGER(KaxVideoAlphaMode)
 
 DECLARE_MKX_UINTEGER(KaxOldStereoMode)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 #endif
 
@@ -396,12 +394,12 @@ public:
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_FLOAT(KaxVideoGamma)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_FLOAT(KaxVideoFrameRate)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_MASTER(KaxVideoColour)
@@ -518,7 +516,7 @@ DECLARE_MKX_UINTEGER(KaxAudioChannels)
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_BINARY (KaxAudioPosition)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 #endif
 
@@ -649,17 +647,17 @@ DECLARE_MKX_UINTEGER(KaxCueRefTime)
 
 DECLARE_MKX_UINTEGER(KaxCueRefCluster)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefNumber)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxCueRefCodecState)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 #endif
@@ -690,7 +688,7 @@ DECLARE_MKX_UINTEGER(KaxFileUID)
 #if MATROSKA_VERSION >= 2
 DECLARE_MKX_BINARY (KaxFileReferral)
 public:
-  filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+  filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 };
 
 DECLARE_MKX_UINTEGER(KaxFileUsedStartTime)

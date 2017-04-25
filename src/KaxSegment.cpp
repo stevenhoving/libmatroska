@@ -46,19 +46,19 @@
 START_LIBMATROSKA_NAMESPACE
 
 KaxSegment::KaxSegment(EBML_EXTRA_DEF)
-  :EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxSegment) EBML_DEF_SEP EBML_EXTRA_CALL)
+  :libebml::EbmlMaster(EBML_CLASS_SEMCONTEXT(KaxSegment) EBML_DEF_SEP EBML_EXTRA_CALL)
 {
   SetSizeLength(5); // mandatory min size support (for easier updating) (2^(7*5)-2 = 32Go)
   SetSizeInfinite(); // by default a segment is big and the size is unknown in advance
 }
 
 KaxSegment::KaxSegment(const KaxSegment & ElementToClone)
-  :EbmlMaster(ElementToClone)
+  :libebml::EbmlMaster(ElementToClone)
 {
   // update the parent of each children
   EBML_MASTER_ITERATOR Itr = begin();
   while (Itr != end()) {
-    if (EbmlId(**Itr) == EBML_ID(KaxCluster)) {
+    if (libebml::EbmlId(**Itr) == EBML_ID(KaxCluster)) {
       static_cast<KaxCluster *>(*Itr)->SetParent(*this);
     }
     ++Itr;

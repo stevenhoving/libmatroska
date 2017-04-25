@@ -45,8 +45,6 @@
 //#include "Cluster.h"
 //#include "CodecHeader.h"
 
-using namespace LIBEBML_NAMESPACE;
-
 START_LIBMATROSKA_NAMESPACE
 
 //class Track;
@@ -59,8 +57,8 @@ START_LIBMATROSKA_NAMESPACE
     \todo Handle the IOCallback selection/type
 */
 class MATROSKA_DLL_API FileMatroska {
-    public:
-    FileMatroska(IOCallback & output);
+  public:
+    FileMatroska(libebml::IOCallback & output);
     ~FileMatroska();
 #ifdef OLD
   filepos_t RenderHead(const std::string & aEncoderApp);
@@ -143,8 +141,8 @@ class MATROSKA_DLL_API FileMatroska {
   inline bool IsMyTrack(const Track * aTrack) const;
   inline bool IsReadingTrack(const uint8 aTrackNum) const;
 #endif // OLD
-  IOCallback & myFile;
 
+  libebml::IOCallback & myFile;
 };
 
 END_LIBMATROSKA_NAMESPACE

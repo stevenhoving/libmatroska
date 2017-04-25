@@ -56,12 +56,12 @@ KaxCluster::KaxCluster(const KaxCluster & ElementToClone)
   // update the parent of each children
   EBML_MASTER_ITERATOR Itr = begin();
   while (Itr != end()) {
-    if (EbmlId(**Itr) == EBML_ID(KaxBlockGroup)) {
+    if (libebml::EbmlId(**Itr) == EBML_ID(KaxBlockGroup)) {
       static_cast<KaxBlockGroup   *>(*Itr)->SetParent(*this);
-    } else if (EbmlId(**Itr) == EBML_ID(KaxBlock)) {
+    } else if (libebml::EbmlId(**Itr) == EBML_ID(KaxBlock)) {
       static_cast<KaxBlock        *>(*Itr)->SetParent(*this);
 #if MATROSKA_VERSION >= 2
-    } else if (EbmlId(**Itr) == EBML_ID(KaxBlockVirtual)) {
+    } else if (libebml::EbmlId(**Itr) == EBML_ID(KaxBlockVirtual)) {
       static_cast<KaxBlockVirtual *>(*Itr)->SetParent(*this);
 #endif // MATROSKA_VERSION
     }
@@ -149,7 +149,7 @@ bool KaxCluster::AddFrame(const KaxTrackEntry & track, uint64 timecode, DataBuff
 /*!
   \todo only put the Blocks written in the cue entries
 */
-filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault)
+filepos_t KaxCluster::Render(libebml::IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault)
 {
   filepos_t Result = 0;
   size_t Index;
@@ -157,7 +157,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
 
   // update the Timecode of the Cluster before writing
   KaxClusterTimecode * Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
-  *static_cast<EbmlUInteger *>(Timecode) = GlobalTimecode() / GlobalTimecodeScale();
+  *static_cast<libebml::EbmlUInteger *>(Timecode) = GlobalTimecode() / GlobalTimecodeScale();
 
   if (Blobs.size() == 0) {
     // old-school direct KaxBlockGroup
@@ -167,11 +167,11 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     if (bSilentTracksUsed) {
       KaxTracks & MyTracks = *static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
       for (TrkItr = MyTracks.begin(); TrkItr != MyTracks.end(); ++TrkItr) {
-        if (EbmlId(*(*TrkItr)) == EBML_ID(KaxTrackEntry)) {
+        if (libebml::EbmlId(*(*TrkItr)) == EBML_ID(KaxTrackEntry)) {
           KaxTrackEntry & entry = *static_cast<KaxTrackEntry *>(*TrkItr);
           uint32 tracknum = entry.TrackNumber();
           for (Itr = begin(); Itr != end(); ++Itr) {
-            if (EbmlId(*(*Itr)) == EBML_ID(KaxBlockGroup)) {
+            if (libebml::EbmlId(*(*Itr)) == EBML_ID(KaxBlockGroup)) {
               KaxBlockGroup & group = *static_cast<KaxBlockGroup *>(*Itr);
               if (group.TrackNumber() == tracknum)
                 break; // this track is used
@@ -182,7 +182,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
             KaxClusterSilentTracks * SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
             assert(SilentTracks != NULL); // the flag bSilentTracksUsed should be set when creating the Cluster
             KaxClusterSilentTrackNumber * trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
-            *static_cast<EbmlUInteger *>(trackelt) = tracknum;
+            *static_cast<libebml::EbmlUInteger *>(trackelt) = tracknum;
           }
         }
       }
@@ -192,7 +192,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     // For all Blocks add their position on the CueEntry
 
     for (Itr = begin(); Itr != end(); ++Itr) {
-      if (EbmlId(*(*Itr)) == EBML_ID(KaxBlockGroup)) {
+      if (libebml::EbmlId(*(*Itr)) == EBML_ID(KaxBlockGroup)) {
         CueToUpdate.PositionSet(*static_cast<const KaxBlockGroup *>(*Itr));
       }
     }
@@ -212,7 +212,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
     if (bSilentTracksUsed) {
       KaxTracks & MyTracks = *static_cast<KaxTracks *>(ParentSegment->FindElt(EBML_INFO(KaxTracks)));
       for (TrkItr = MyTracks.begin(); TrkItr != MyTracks.end(); ++TrkItr) {
-        if (EbmlId(*(*TrkItr)) == EBML_ID(KaxTrackEntry)) {
+        if (libebml::EbmlId(*(*TrkItr)) == EBML_ID(KaxTrackEntry)) {
           KaxTrackEntry & entry = *static_cast<KaxTrackEntry *>(*TrkItr);
           uint32 tracknum = entry.TrackNumber();
           for (Index = 0; Index<Blobs.size(); Index++) {
@@ -224,7 +224,7 @@ filepos_t KaxCluster::Render(IOCallback & output, KaxCues & CueToUpdate, bool bS
             KaxClusterSilentTracks * SilentTracks = static_cast<KaxClusterSilentTracks *>(this->FindFirstElt(EBML_INFO(KaxClusterSilentTracks)));
             assert(SilentTracks != NULL); // the flag bSilentTracksUsed should be set when creating the Cluster
             KaxClusterSilentTrackNumber * trackelt = static_cast<KaxClusterSilentTrackNumber *>(SilentTracks->AddNewElt(EBML_INFO(KaxClusterSilentTrackNumber)));
-            *static_cast<EbmlUInteger *>(trackelt) = tracknum;
+            *static_cast<libebml::EbmlUInteger *>(trackelt) = tracknum;
           }
         }
       }
@@ -273,7 +273,7 @@ uint64 KaxCluster::GetBlockGlobalTimecode(int16 GlobalSavedTimecode)
   if (!bFirstFrameInside) {
     KaxClusterTimecode * Timecode = static_cast<KaxClusterTimecode *>(this->FindElt(EBML_INFO(KaxClusterTimecode)));
     assert (bFirstFrameInside); // use the InitTimecode() hack for now
-    MinTimecode = MaxTimecode = PreviousTimecode = *static_cast<EbmlUInteger *>(Timecode);
+    MinTimecode = MaxTimecode = PreviousTimecode = *static_cast<libebml::EbmlUInteger *>(Timecode);
     bFirstFrameInside = true;
     bPreviousTimecodeIsSet = true;
   }
@@ -282,7 +282,7 @@ uint64 KaxCluster::GetBlockGlobalTimecode(int16 GlobalSavedTimecode)
 
 KaxBlockGroup & KaxCluster::GetNewBlock()
 {
-  KaxBlockGroup & MyBlock = AddNewChild<KaxBlockGroup>(*this);
+  KaxBlockGroup & MyBlock = libebml::AddNewChild<KaxBlockGroup>(*this);
   MyBlock.SetParent(*this);
   return MyBlock;
 }
@@ -291,7 +291,7 @@ void KaxCluster::ReleaseFrames()
 {
   EBML_MASTER_ITERATOR Itr;
   for (Itr = begin(); Itr != end(); ++Itr) {
-    if (EbmlId(*(*Itr)) == EBML_ID(KaxBlockGroup)) {
+    if (libebml::EbmlId(*(*Itr)) == EBML_ID(KaxBlockGroup)) {
       static_cast<KaxBlockGroup*>(*Itr)->ReleaseFrames();
     }
   }

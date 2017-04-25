@@ -39,8 +39,6 @@
 #include "ebml/EbmlMaster.h"
 #include "matroska/KaxDefines.h"
 
-using namespace LIBEBML_NAMESPACE;
-
 START_LIBMATROSKA_NAMESPACE
 
 DECLARE_MKX_MASTER_CONS(KaxSegment)

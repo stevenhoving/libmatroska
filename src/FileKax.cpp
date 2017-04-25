@@ -46,7 +46,7 @@ START_LIBMATROSKA_NAMESPACE
 
 //typedef Track *TrackID;
 
-FileMatroska::FileMatroska(IOCallback & output)
+FileMatroska::FileMatroska(libebml::IOCallback & output)
   :myFile(output)
 #ifdef OLD
   ,myCurrReadBlock(NULL)

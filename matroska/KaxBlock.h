@@ -43,8 +43,6 @@
 #include "matroska/KaxTracks.h"
 #include "matroska/KaxDefines.h"
 
-using namespace LIBEBML_NAMESPACE;
-
 START_LIBMATROSKA_NAMESPACE
 
 class KaxCluster;
@@ -205,7 +203,7 @@ DECLARE_MKX_MASTER(KaxBlockGroup)
     const KaxTrackEntry * ParentTrack;
 };
 
-class KaxInternalBlock : public EbmlBinary {
+class KaxInternalBlock : public libebml::EbmlBinary {
   public:
     KaxInternalBlock(EBML_DEF_CONS EBML_DEF_SEP bool bSimple EBML_DEF_SEP EBML_EXTRA_PARAM) :EBML_DEF_BINARY_INIT EBML_DEF_SEP bLocalTimecodeUsed(false), mLacing(LACING_AUTO), mInvisible(false)
       ,ParentCluster(NULL), bIsSimple(bSimple), bIsKeyframe(true), bIsDiscardable(false)
@@ -224,13 +222,13 @@ class KaxInternalBlock : public EbmlBinary {
       \note override this function to generate the Data/Size on the fly, unlike the usual binary elements
     */
     filepos_t UpdateSize(bool bSaveDefault = false, bool bForceRender = false);
-    filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA);
+    filepos_t ReadData(libebml::IOCallback & input, libebml::ScopeMode ReadFully = libebml::SCOPE_ALL_DATA);
 
     /*!
       \brief Only read the head of the Block (not internal data)
       \note convenient when you are parsing the file quickly
     */
-    uint64 ReadInternalHead(IOCallback & input);
+    uint64 ReadInternalHead(libebml::IOCallback & input);
 
     unsigned int NumberFrames() const { return SizeList.size();}
     DataBuffer & GetBuffer(unsigned int iIndex) {return *myBuffers[iIndex];}
@@ -278,7 +276,7 @@ class KaxInternalBlock : public EbmlBinary {
     bool       mInvisible;
     uint64     FirstFrameLocation;
 
-    filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault = false);
+    filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault = false);
 
     KaxCluster * ParentCluster;
     bool       bIsSimple;
@@ -370,9 +368,9 @@ DECLARE_MKX_BINARY_CONS(KaxBlockVirtual)
 
     void SetParent(const KaxCluster & aParentCluster) {ParentCluster = &aParentCluster;}
 
-        filepos_t RenderData(IOCallback & output, bool bForceRender, bool bSaveDefault);
+    filepos_t RenderData(libebml::IOCallback & output, bool bForceRender, bool bSaveDefault);
 
-        filepos_t ReadData(IOCallback & input, ScopeMode ReadFully = SCOPE_ALL_DATA);
+    filepos_t ReadData(libebml::IOCallback & input, libebml::ScopeMode ReadFully = libebml::SCOPE_ALL_DATA);
 
   protected:
     uint64 Timecode; // temporary timecode of the first frame if there are more than one

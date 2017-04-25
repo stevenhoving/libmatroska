@@ -40,6 +40,8 @@
 #include "matroska/KaxBlockData.h"
 #include "matroska/KaxCuesData.h"
 
+using namespace LIBEBML_NAMESPACE;
+
 START_LIBMATROSKA_NAMESPACE
 
 DEFINE_START_SEMANTIC(KaxSegment)

@@ -38,46 +38,44 @@
 #include "matroska/KaxTypes.h"
 #include "ebml/EbmlElement.h"
 
-using namespace LIBEBML_NAMESPACE;
-
 START_LIBMATROSKA_NAMESPACE
 
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxMatroska_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxSegment_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxAttachments_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxAttached_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxFileDescription_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxFileName_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxMimeType_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxFileData_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxChapters_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxCluster_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTags_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTag_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxBlockGroup_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxReferencePriority_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxReferenceBlock_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxReferenceVirtual_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxCues_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxInfo_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxSeekHead_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTracks_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackEntry_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackNumber_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackType_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackFlagEnabled_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackFlagDefault_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackFlagLacing_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackName_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackLanguage_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxCodecID_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxCodecPrivate_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxCodecName_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxCodecSettings_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxCodecInfoURL_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxCodecDownloadURL_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxCodecDecodeAll_Context;
-extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackOverlay_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxMatroska_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxSegment_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxAttachments_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxAttached_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxFileDescription_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxFileName_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxMimeType_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxFileData_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxChapters_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxCluster_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTags_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTag_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxBlockGroup_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxReferencePriority_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxReferenceBlock_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxReferenceVirtual_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxCues_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxInfo_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxSeekHead_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTracks_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTrackEntry_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTrackNumber_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTrackType_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTrackFlagEnabled_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTrackFlagDefault_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTrackFlagLacing_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTrackName_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTrackLanguage_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxCodecID_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxCodecPrivate_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxCodecName_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxCodecSettings_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxCodecInfoURL_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxCodecDownloadURL_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxCodecDecodeAll_Context;
+extern const libebml::EbmlSemanticContext MATROSKA_DLL_API KaxTrackOverlay_Context;
 
 #define Context_KaxMatroska              KaxMatroska_Context
 #define Context_KaxSegment               KaxSegment_Context
@@ -95,7 +93,7 @@ extern const EbmlSemanticContext MATROSKA_DLL_API KaxTrackOverlay_Context;
 #define Context_KaxTag                   KaxTag_Context
 #define Context_KaxTagCommercial         KaxTagCommercial_Context
 
-extern MATROSKA_DLL_API const EbmlSemanticContext & GetKaxGlobal_Context();
+extern MATROSKA_DLL_API const libebml::EbmlSemanticContext & GetKaxGlobal_Context();
 //extern MATROSKA_DLL_API const EbmlSemanticContext & GetKaxTagsGlobal_Context();
 
 END_LIBMATROSKA_NAMESPACE

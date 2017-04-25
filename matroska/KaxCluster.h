@@ -30,7 +30,6 @@
   \version \$Id: KaxCluster.h,v 1.10 2004/04/14 23:26:17 robux4 Exp $
   \author Steve Lhomme     <robux4 @ users.sf.net>
   \author Julien Coloos    <suiryc @ users.sf.net>
-
 */
 #ifndef LIBMATROSKA_CLUSTER_H
 #define LIBMATROSKA_CLUSTER_H
@@ -41,8 +40,6 @@
 #include "matroska/KaxBlock.h"
 #include "matroska/KaxCues.h"
 #include "matroska/KaxDefines.h"
-
-using namespace LIBEBML_NAMESPACE;
 
 START_LIBMATROSKA_NAMESPACE
 
@@ -73,7 +70,7 @@ DECLARE_MKX_MASTER_CONS(KaxCluster)
     /*!
       \brief Render the data to the stream and retrieve the position of BlockGroups for later cue entries
     */
-    filepos_t Render(IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault = false);
+    filepos_t Render(libebml::IOCallback & output, KaxCues & CueToUpdate, bool bSaveDefault = false);
 
     /*!
       \return the global timecode of this Cluster

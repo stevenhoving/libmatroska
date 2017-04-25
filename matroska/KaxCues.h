@@ -41,8 +41,6 @@
 #include "ebml/EbmlMaster.h"
 #include "matroska/KaxBlock.h"
 
-using namespace LIBEBML_NAMESPACE;
-
 START_LIBMATROSKA_NAMESPACE
 
 class KaxCuePoint;
@@ -63,7 +61,7 @@ DECLARE_MKX_MASTER(KaxCues)
     /*!
       \brief override to sort by timecode/track
     */
-    filepos_t Render(IOCallback & output, bool bSaveDefault = false) {
+    filepos_t Render(libebml::IOCallback & output, bool bSaveDefault = false) {
       Sort();
       return EbmlMaster::Render(output, bSaveDefault);
     }
